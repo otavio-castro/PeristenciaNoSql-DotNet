@@ -5,7 +5,7 @@ using PeristenciaNoSql.Services.Interfaces;
 namespace PeristenciaNoSql.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/alunos")]
     public class AlunosController : ControllerBase
     {
         private readonly IAlunosServices _alunosServices;
@@ -15,7 +15,7 @@ namespace PeristenciaNoSql.Controllers
             _alunosServices = alunosServices;
         }
 
-        // GET: api/Alunos
+        // GET: api/alunos
         [HttpGet]
         public async Task<ActionResult<List<Aluno>>> Get()
         {
@@ -23,7 +23,7 @@ namespace PeristenciaNoSql.Controllers
             return Ok(alunos);
         }
 
-        // GET: api/Alunos/{id}
+        // GET: api/alunos/{id}
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<Aluno>> Get(string id)
         {
@@ -37,8 +37,8 @@ namespace PeristenciaNoSql.Controllers
             return Ok(aluno);
         }
 
-        // GET: api/Alunos/email/{email}
-        [HttpGet("email/{email}")]
+        // GET: api/alunos/{email}
+        [HttpGet("{email}")]
         public async Task<ActionResult<Aluno>> GetByEmail(string email)
         {
             var aluno = await _alunosServices.GetByEmailAsync(email);
@@ -59,7 +59,7 @@ namespace PeristenciaNoSql.Controllers
             return CreatedAtAction(nameof(Get), new { id = aluno.Id }, aluno);
         }
 
-        // PUT: api/Alunos/{id}
+        // PUT: api/alunos/{id}
         [HttpPut("{id:length(24)}")]
         public async Task<IActionResult> Update(string id, Aluno alunoAtualizado)
         {
@@ -93,8 +93,8 @@ namespace PeristenciaNoSql.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Alunos/email/{email}
-        [HttpDelete("email/{email}")]
+        // DELETE: api/alunos/{email}
+        [HttpDelete("{email}")]
         public async Task<IActionResult> DeleteByEmail(string email)
         {
             var aluno = await _alunosServices.GetByEmailAsync(email);
