@@ -1,0 +1,6 @@
+@PeristenciaNoSql_HostAddress = http://localhost:5130
+
+GET {{PeristenciaNoSql_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
